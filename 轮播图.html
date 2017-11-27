@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div class="box">
+    <ul id="ad">
+      <li><img src="images/a.jpg" alt="1111" ></li>
+      <li><img src="images/b.jpg" alt="2222"></li>
+      <li><img src="images/c.jpg" alt="3333"></li>
+      <li><img src="images/d.jpg" alt="4444"></li>
+    </ul>
+    <p id="txt"></p>
+    <span id="left"></span>
+    <span id="right"></span>
+  </div>
+  <script type="text/javascript">
+  function $(id) {
+    return document.getElementById(id)
+  }
+  var liArr = $('ad').children;
+  function animate(obj, target, attr) {
+    clearInterval(obj.timer);
+
+    $('txt').innerHTML = obj.children[3].children[0].alt;
+
+    //管理定时器
+    obj.timer = setInterval(function() {
+      var step = (target-obj.offsetLeft) / 10 ;
+      step = step > 0 ? Math.ceil(step):Math.floor(step);
+      obj.style.left = obj.offsetLeft + step + 'px';
+      //当移动一个宽度了就停止
+      if (obj.offsetLeft%800==0) {
+          clearInterval(obj.timer);
+      
+
+           if(attr==="left") {
+            var newLi = obj.children[liArr.length-1].cloneNode(true);
+           obj.insertBefore(newLi, obj.children[0]);
+           obj.removeChild(obj.children[liArr.length-1]);
+           // 必须恢复到这个位置，因为添加的子元素会使盒子内的子元素位置变化
+           obj.style.left = '-1600px';
+           }else {
+              var newLi = obj.children[0].cloneNode(true);
+              obj.appendChild(newLi);
+              obj.removeChild(obj.children[0])
+              obj.style.left = '-1600px';
+           }
+       }
+    },20);
+
+  }
+
+  var timer = setInterval(autoplay, 2000)
+  function autoplay() {
+    animate($('ad'), -2400, "right");
+  }
+
+  $('ad').parentNode.onmouseover = function() {
+    clearInterval(timer);
+    $('left').style.display = "block";
+    $('right').style.display = "block";
+  }
+
+  $('ad').parentNode.onmouseout  = function() {
+    
+    $('left').style.display = "none";
+    $('right').style.display = "none";
+    timer = setInterval(autoplay, 2000)
+  }
+
+  $('left').onclick = function() {
+    clearInterval(timer)
+    animate($('ad'), -800, 'left')
+  }
+
+  $('right').onclick = function() {
+    clearInterval(timer)
+    animate($('ad'), -2400, 'right')
+  }
+  </script>
+</body>
+</html>

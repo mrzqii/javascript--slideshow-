@@ -1,0 +1,66 @@
+body,
+ul {
+  padding: 0;
+  margin: 0;
+}
+li {
+  list-style: none;
+}
+.box {
+  width: 800px;
+  height: 400px;
+  margin: 50px auto;
+  position: relative;
+  overflow: hidden;
+}
+.box span {
+  width: 40px;
+  height: 60px;
+  display: block;
+  position: absolute;
+  top: 225px;
+  margin-top: -20px;
+  cursor: pointer;
+  z-index: 1;
+}
+.box #left {
+  position: absolute;
+  top: 200px;
+  width: 30px;
+  height: 80px;
+  background-color: #b8dab8;
+  left: 0;
+  margin-top: -66px;
+  display: none;
+}
+.box #right {
+  position: absolute;
+  top: 200px;
+  width: 30px;
+  height: 80px;
+  background-color: #b8dab8;
+  right: 0;
+  margin-top: -66px;
+  display: none;
+}
+.box #txt {
+  width: 100px;
+  height: 30px;
+  background-color: #000;
+  opacity: 0.4;
+  position: absolute;
+  bottom: 0;
+  left: 100px;
+  color: #fff;
+  line-height: 30px;
+  text-align: center;
+}
+#ad {
+  width: 4000px;
+  height: 400px;
+  position: absolute;
+  left: -1600px;
+}
+#ad li {
+  float: left;
+}
